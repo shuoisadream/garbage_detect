@@ -1,0 +1,34 @@
+__BASE__: [
+  '../coco.yaml',
+  './hyp.scratch.n.yaml',
+  './yolov11-base.yaml'
+]
+
+data:
+  dataset_name: garbage
+  train_set: ./garbage_dataset/train.txt
+  val_set:   ./garbage_dataset/val.txt
+  test_set:  ./garbage_dataset/test.txt
+  nc: 6
+  names: ['BIODEGRADABLE', 'CARDBOARD', 'GLASS', 'METAL', 'PAPER', 'PLASTIC']
+
+nc: 6
+
+network:
+  depth_multiple: 0.50
+  width_multiple: 0.25
+  max_channels: 1024
+  scale: n
+  nc: 6
+
+weight: ./best.ckpt
+strict_load: False
+
+epochs: 100
+per_batch_size: 32
+img_size: 640
+log_interval: 10
+save_interval: 10
+
+optimizer:
+  lr_init: 0.002
